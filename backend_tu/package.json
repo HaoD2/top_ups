@@ -1,0 +1,22 @@
+{
+  "name": "backend_tu",
+  "version": "1.0.0",
+  "description": "backend TopUp Apps",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HaoD2/top_ups.git"
+  },
+  "author": "kevin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HaoD2/top_ups/issues"
+  },
+  "homepage": "https://github.com/HaoD2/top_ups#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
