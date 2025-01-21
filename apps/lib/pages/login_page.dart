@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:top_ups/pages/state/loginstate.dart';
+import 'package:top_ups/provider/baseProvider.dart';
 
 class loginPage extends StatefulWidget {
   const loginPage({super.key});
@@ -33,6 +35,9 @@ class _loginPageState extends State<loginPage> {
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Consumer(
             builder: (context, ref, child) {
+              // Pantau status login menggunakan loginNotifierProvider
+              final loginState = ref.watch(loginNotifierProvider);
+
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -53,13 +58,26 @@ class _loginPageState extends State<loginPage> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  ElevatedButton(
-                    child: const Text('Login'),
-                    onPressed: () {
-                      // TODO: Implement login logic here
-                      // ref.read<AuthService>().login(emailController.text, passwordController.text);
-                    },
-                  ),
+                  // Tampilkan indikator loading jika sedang login
+                  if (loginState is LoginStateLoading)
+                    const CircularProgressIndicator(),
+                  if (loginState is! LoginStateLoading) ...[
+                    if (loginState is LoginStateError)
+                      Text(
+                        loginState.error,
+                        style: const TextStyle(color: Colors.red),
+                      ),
+                    ElevatedButton(
+                      child: const Text('Login'),
+                      onPressed: () {
+                        // Panggil fungsi login pada LoginNotifier
+                        ref.read(loginNotifierProvider.notifier).login({
+                          "email": emailController.text.trim(),
+                          "password": passwordController.text.trim(),
+                        });
+                      },
+                    ),
+                  ],
                 ],
               );
             },
