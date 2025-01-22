@@ -7,6 +7,9 @@ router.use(bodyParser.json());
 const admin = require('firebase-admin');
 const credentials = require("../serviceAccountKey.json");
 
+router.use(bodyParser.json());
+
+
 admin.initializeApp({
     credential: admin.credential.cert(credentials),
     databaseURL: 'https://topupsapps-default-rtdb.firebaseio.com/'
@@ -44,6 +47,29 @@ router.post('/signup', async (req, res) => {
     }
 });
 
+router.post('/verifyToken', async (req, res) => {
+    try {
+        const { idToken } = req.body;
 
+        if (!idToken) {
+            return res.status(400).json({ message: 'ID Token is required.' });
+        }
+
+        // Verifikasi ID Token dengan Firebase Admin SDK
+        const decodedToken = await admin.auth().verifyIdToken(idToken);
+
+        return res.status(200).json({
+            message: 'Token valid',
+            uid: decodedToken.uid,
+            email: decodedToken.email,
+        });
+    } catch (error) {
+        console.error('Error verifying ID token:', error);
+        return res.status(403).json({
+            message: 'Invalid ID Token.',
+            error: error.message,
+        });
+    }
+});
 
 module.exports = router;
