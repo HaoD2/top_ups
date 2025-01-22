@@ -2,9 +2,10 @@
   "name": "backend_tu",
   "version": "1.0.0",
   "description": "backend TopUp Apps",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,8 @@
   },
   "homepage": "https://github.com/HaoD2/top_ups#readme",
   "dependencies": {
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "firebase-admin": "^13.0.2",
+    "nodemon": "^3.1.9"
   }
 }
