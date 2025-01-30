@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:top_ups/pages/home.dart';
@@ -5,7 +6,9 @@ import 'package:top_ups/pages/login_page.dart';
 import 'package:top_ups/pages/state/loginstate.dart';
 import 'package:top_ups/provider/baseProvider.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // Pastikan binding sudah diinisialisasi
+  await Firebase.initializeApp(); // Inisialisasi Firebase
   runApp(const ProviderScope(child: const MyApp()));
 }
 

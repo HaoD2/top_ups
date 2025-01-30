@@ -38,6 +38,12 @@ class _loginPageState extends State<loginPage> {
               // Pantau status login menggunakan loginNotifierProvider
               final loginState = ref.watch(loginNotifierProvider);
 
+              if (loginState is LoginStateSuccess) {
+                Future.delayed(Duration.zero, () {
+                  Navigator.pushReplacementNamed(context, '/home'); // Halaman home
+                });
+              }
+
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

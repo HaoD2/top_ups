@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "871779119770",
+    "firebase_url": "https://topupsapps-default-rtdb.firebaseio.com",
+    "project_id": "topupsapps",
+    "storage_bucket": "topupsapps.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:871779119770:android:c2e52cc3f451fc97c7a523",
+        "android_client_info": {
+          "package_name": "com.example.top_ups"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-nAhvrVa7D5bqO5alHaVnk_ISGW9DdmM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -17,6 +17,6 @@ final authStateProvider = StreamProvider<String?>((ref) {
 final loginNotifierProvider = StateNotifierProvider<LoginNotifier, LoginState>(
   (ref) {
     final authRepository = ref.read(authRepositoryProvider);
-    return LoginNotifier(authRepository);
+    return LoginNotifier(authRepository,ref);
   },
 );
