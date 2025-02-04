@@ -1,13 +1,14 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:top_ups/pages/home.dart';
 import 'package:top_ups/repository/authRepo.dart';
 
 
-final navigatorProvider = Provider<NavigatorState>((ref) {
-  // Mengambil context dari aplikasi dan mengembalikan navigatorState
-  return Navigator.of(ref.read(navigatorKeyProvider).currentContext!);
+final navigatorProvider = Provider<NavigatorState?>((ref) {
+  return ref.read(navigatorKeyProvider).currentState;
 });
+
 
 final navigatorKeyProvider = Provider<GlobalKey<NavigatorState>>((ref) {
   return GlobalKey<NavigatorState>();
@@ -63,9 +64,13 @@ class LoginNotifier extends StateNotifier<LoginState> {
     state = const LoginStateLoading();
     try {
       final success = await _authRepository.login(data);
+      print(success);
       if (success) {
         state = const LoginStateSuccess();
-        _ref.read(navigatorProvider).pushReplacementNamed('/home');
+      Future.delayed(Duration(milliseconds: 200), () {
+        final navigator = _ref.read(navigatorProvider);
+        navigator?.pushReplacementNamed(homeMenu.routeName);
+      });
       } else {
         state = const LoginStateError('Login failed');
       }

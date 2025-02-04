@@ -57,5 +57,5 @@ class AuthRepository {
 }
 
 class baseURL {
-  static String url = "http://192.168.1.9:8000"; // Emulator Android
+  static String url = "https://famous-mastiff-sunny.ngrok-free.app"; 
 }

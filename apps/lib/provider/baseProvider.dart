@@ -9,8 +9,8 @@ final authRepositoryProvider = Provider<AuthRepository>((ref) {
 });
 
 // StreamProvider untuk memantau perubahan autentikasi
-final authStateProvider = StreamProvider<String?>((ref) {
-  return ref.read(authRepositoryProvider).authStateChange;
+final authStateProvider = StreamProvider<User?>((ref) {
+  return FirebaseAuth.instance.authStateChanges();
 });
 
 // Provider untuk LoginNotifier
@@ -20,3 +20,7 @@ final loginNotifierProvider = StateNotifierProvider<LoginNotifier, LoginState>(
     return LoginNotifier(authRepository,ref);
   },
 );
+
+final indexBottomNavbarProvider = StateProvider<int>((ref) {
+  return 0;
+});

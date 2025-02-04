@@ -11,12 +11,16 @@ Future<void> main() async {
   await Firebase.initializeApp(); // Inisialisasi Firebase
   runApp(const ProviderScope(child: const MyApp()));
 }
+final navigatorProvider = Provider<NavigatorState?>((ref) {
+  return ref.watch(navigatorKeyProvider).currentState;
+});
 
 class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final navigatorKey = ref.watch(navigatorKeyProvider);
     final authState = ref.watch(authStateProvider);
     return MaterialApp(
       title: 'Flutter Demo',
@@ -24,6 +28,7 @@ class MyApp extends ConsumerWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+      navigatorKey: navigatorKey,
       routes: {
         loginPage.routeName: (context) => const loginPage(),
         homeMenu.routeName: (context) => const homeMenu(),
