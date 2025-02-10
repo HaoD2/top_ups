@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:top_ups/model/VoucherModel.dart';
 import 'package:top_ups/model/gameCurrency.dart';
+import 'package:top_ups/model/gameModel.dart';
 import 'package:top_ups/model/gamePass.dart';
 import 'package:top_ups/model/product.dart';
 import 'package:top_ups/pages/state/loginstate.dart';
@@ -50,4 +51,8 @@ final productsProvider =
       "📋 Final Products List: ${products.map((p) => p.toString()).toList()}");
 
   return products;
+});
+
+final gamesProvider = FutureProvider<List<String>>((ref) async {
+  return FirebaseRepository().fetchGames();
 });

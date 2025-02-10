@@ -180,6 +180,84 @@
                     "price": 1174771
                 }
             }
+        },
+        "Honkai_StarRail": {
+            "blessing_Welkin_Moon": {
+                "pack_1": {
+                    "name": "Express Supply Pass",
+                    "price": 58478
+                },
+                "pack_2": {
+                    "name": "Express Supply Pass x 2",
+                    "price": 116957
+                },
+                "pack_3": {
+                    "name": "Express Supply Pass x 3",
+                    "price": 175435
+                },
+                "pack_4": {
+                    "name": "Express Supply Pass x 4",
+                    "price": 233913
+                },
+                "pack_5": {
+                    "name": "Express Supply Pass x 5",
+                    "price": 292391
+                }
+            },
+            "jade": {
+                "all_Pack": {
+                    "name": "All Pack Jade",
+                    "price": 2389518
+                },
+                "jade_60": {
+                    "name": "60 Jade",
+                    "price": 11455
+                },
+                "jade_300_30": {
+                    "name": "300 + 30 Jade",
+                    "price": 58478
+                },
+                "jade_980_110": {
+                    "name": "980 + 110 Jade",
+                    "price": 175963
+                },
+                "jade_1280_140": {
+                    "name": "1280 + 140 Jade",
+                    "price": 234441
+                },
+                "jade_1980_260": {
+                    "name": "1980 + 260 Jade",
+                    "price": 381017
+                },
+                "jade_3280_600": {
+                    "name": "3280 + 600 Jade",
+                    "price": 587234
+                },
+                "jade_4260_710": {
+                    "name": "4260 + 710 Jade",
+                    "price": 772423
+                },
+                "jade_6480_1600": {
+                    "name": "6480 + 1600 Jade",
+                    "price": 1174771
+                }
+            }
         }
+    },
+    "Coming_soon": {
+        "Games": [
+            "Mobile Legends",
+            "LOL Wild Rift",
+            "Blue Archives",
+            "Reverse 1999",
+            "Arknights"
+        ],
+        "Non_Games": [
+            "Google Play Code",
+            "Xbox Gift Cards",
+            "Apple Store Gift Cards",
+            "Nintendo Switch Gift Cards",
+            "Microsoft Store Gift Cards"
+        ]
     }
 }

@@ -11,7 +11,7 @@ class HomeGame extends ConsumerWidget {
   static const routeName = homeMenu.routeName + "/homeGame";
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final List<String> games = ["HoK", "Genshin Impact"];
+    final List<String> games = ["HoK", "Genshin_Impact"];
 
     return Scaffold(
       appBar: AppBar(title: Text("Game List")),
