@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthRepository {
@@ -29,14 +30,14 @@ class AuthRepository {
       );
 
       if (response.statusCode == 200) {
-        print(response.body);
+        _token = idToken; // Simpan token di variabel
+        await _saveToken(idToken); // Simpan token di SharedPreferences
         return true; // Login sukses
       } else {
-        print(response.body);
         return false; // Login gagal
       }
     } catch (error) {
-      print('Error during login: $error');
+      print('Error during logout: $error');
       return false;
     }
   }
@@ -44,10 +45,40 @@ class AuthRepository {
   Future<bool> logout() async {
     try {
       final response = await http.post(Uri.parse('$baseUrl/logout'));
-      return response.statusCode == 200;
+      await FirebaseAuth.instance.signOut(); // Logout dari Firebase
+      await _removeToken(); // Hapus token dari SharedPreferences
+      return true;
     } catch (error) {
       print('Error during logout: $error');
       return false;
+    }
+  }
+
+  Future<void> _saveToken(String token) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('auth_token', token);
+    } catch (e) {
+      print('Error saving token: $e');
+    }
+  }
+
+  Future<void> _removeToken() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.remove('auth_token');
+    } catch (e) {
+      print('Error removing token: $e');
+    }
+  }
+
+  Future<String?> getToken() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      return prefs.getString('auth_token');
+    } catch (e) {
+      print('Error getting token: $e');
+      return null;
     }
   }
 
@@ -57,5 +88,5 @@ class AuthRepository {
 }
 
 class baseURL {
-  static String url = "https://famous-mastiff-sunny.ngrok-free.app"; 
+  static String url = "https://famous-mastiff-sunny.ngrok-free.app";
 }

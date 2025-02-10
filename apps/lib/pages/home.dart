@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:top_ups/provider/baseProvider.dart';
+import 'package:top_ups/ui/homeBase/game.dart';
 
 class homeMenu extends ConsumerWidget {
   const homeMenu({super.key});
@@ -11,14 +12,9 @@ class homeMenu extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final bodies = [
+      HomeGame(),
       const Center(
-        child: Text('Hello From Home Screen'),
-      ),
-      const Center(
-        child: Text('Hello From Favorite Screen'),
-      ),
-      const Center(
-        child: Text('Hello From Settings Screen'),
+        child: Text('Hello From Voucher'),
       ),
       const Center(
         child: Text('Hello From Profile Screen'),

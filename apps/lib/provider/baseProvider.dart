@@ -1,8 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:top_ups/model/VoucherModel.dart';
+import 'package:top_ups/model/gameCurrency.dart';
+import 'package:top_ups/model/gamePass.dart';
+import 'package:top_ups/model/product.dart';
 import 'package:top_ups/pages/state/loginstate.dart';
 import 'package:top_ups/repository/authRepo.dart';
+import 'package:top_ups/repository/productRepo.dart';
 
 final authRepositoryProvider = Provider<AuthRepository>((ref) {
   return AuthRepository();
@@ -17,10 +22,32 @@ final authStateProvider = StreamProvider<User?>((ref) {
 final loginNotifierProvider = StateNotifierProvider<LoginNotifier, LoginState>(
   (ref) {
     final authRepository = ref.read(authRepositoryProvider);
-    return LoginNotifier(authRepository,ref);
+    return LoginNotifier(authRepository, ref);
   },
 );
 
 final indexBottomNavbarProvider = StateProvider<int>((ref) {
   return 0;
+});
+
+final selectedGameProvider = StateProvider<String?>((ref) => null);
+
+final firebaseRepositoryProvider = Provider<FirebaseRepository>((ref) {
+  return FirebaseRepository();
+});
+
+/// Provider untuk mendapatkan produk berdasarkan kategori dan game
+final productsProvider =
+    FutureProvider.family<List<BaseProduct>, Map<String, String?>>(
+        (ref, params) async {
+  final repo = ref.read(firebaseRepositoryProvider);
+  final category = params['category'] ?? "Games";
+  final gameType = params['gameType'] ?? "default";
+  print("🔍 Fetching products with category: $category, gameType: $gameType");
+
+  List<BaseProduct> products = await repo.fetchProducts(category, gameType);
+  print(
+      "📋 Final Products List: ${products.map((p) => p.toString()).toList()}");
+
+  return products;
 });

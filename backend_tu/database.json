@@ -1,0 +1,185 @@
+{
+    "version": "1_0_0",
+    "name": "HoKTopUp",
+    "description": "Aplikasi Top Up HoK dan Genshin Impact",
+    "author": "kevin020oct@gmail.com",
+    "license": "MIT",
+    "Non_Games": {
+        "Voucher": {
+            "Steam": {
+                "IDR_12000": {
+                    "name": "IDR 12.000 STEAM",
+                    "price": 11882
+                },
+                "IDR_45000": {
+                    "name": "IDR 45.000 STEAM",
+                    "price": 44180
+                },
+                "IDR_60000": {
+                    "name": "IDR 60.000 STEAM",
+                    "price": 59793
+                },
+                "IDR_90000": {
+                    "name": "IDR 90.000 STEAM",
+                    "price": 89606
+                },
+                "IDR_120000": {
+                    "name": "IDR 120.000 STEAM",
+                    "price": 117981
+                },
+                "IDR_250000": {
+                    "name": "IDR 250.000 STEAM",
+                    "price": 245185
+                },
+                "IDR_400000": {
+                    "name": "IDR 400.000 STEAM",
+                    "price": 398059
+                },
+                "IDR_600000": {
+                    "name": "IDR 600.000 STEAM",
+                    "price": 589907
+                }
+            }
+        }
+    },
+    "Games": {
+        "HoK": {
+            "pass": {
+                "weekly_Card": {
+                    "name": "Weekly Card",
+                    "price": 11432,
+                    "description": "Mendapatkan bonus harian selama 7 hari."
+                },
+                "weekly_Card_Plus": {
+                    "name": "Weekly Card Plus",
+                    "price": 37153,
+                    "description": "Mendapatkan lebih banyak bonus harian selama 7 hari."
+                }
+            },
+            "tokens": {
+                "token_8": {
+                    "amount": 8,
+                    "bonus": 0,
+                    "price": 1225
+                },
+                "token_16_1": {
+                    "amount": 16,
+                    "bonus": 1,
+                    "price": 2177
+                },
+                "token_23_2": {
+                    "amount": 23,
+                    "bonus": 2,
+                    "price": 3538
+                },
+                "token_80_8": {
+                    "amount": 80,
+                    "bonus": 8,
+                    "price": 11840
+                },
+                "token_240_17": {
+                    "amount": 240,
+                    "bonus": 17,
+                    "price": 37153
+                },
+                "token_400_32": {
+                    "amount": 400,
+                    "bonus": 32,
+                    "price": 62466
+                },
+                "token_560_45": {
+                    "amount": 560,
+                    "bonus": 45,
+                    "price": 85739
+                },
+                "token_800_65": {
+                    "amount": 800,
+                    "bonus": 65,
+                    "price": 117040
+                },
+                "token_1200_108": {
+                    "amount": 1200,
+                    "bonus": 108,
+                    "price": 183454
+                },
+                "token_2400_216": {
+                    "amount": 2400,
+                    "bonus": 216,
+                    "price": 364866
+                },
+                "token_4000_400": {
+                    "amount": 4000,
+                    "bonus": 400,
+                    "price": 597450
+                },
+                "token_8000_800": {
+                    "amount": 8000,
+                    "bonus": 800,
+                    "price": 1170675
+                }
+            }
+        },
+        "Genshin_Impact": {
+            "blessing_Welkin_Moon": {
+                "pack_1": {
+                    "name": "Blessing Welkin Moon",
+                    "price": 58478
+                },
+                "pack_2": {
+                    "name": "Blessing Welkin Moon x 2",
+                    "price": 116957
+                },
+                "pack_3": {
+                    "name": "Blessing Welkin Moon x 3",
+                    "price": 175435
+                },
+                "pack_4": {
+                    "name": "Blessing Welkin Moon x 4",
+                    "price": 233913
+                },
+                "pack_5": {
+                    "name": "Blessing Welkin Moon x 5",
+                    "price": 292391
+                }
+            },
+            "genesis_Crystals": {
+                "all_Pack": {
+                    "name": "All Pack Genesis Crystals",
+                    "price": 2389518
+                },
+                "crystal_60": {
+                    "name": "60 Crystals",
+                    "price": 11455
+                },
+                "crystal_300_30": {
+                    "name": "300 + 30 Crystals",
+                    "price": 58478
+                },
+                "crystal_980_110": {
+                    "name": "980 + 110 Crystals",
+                    "price": 175963
+                },
+                "crystal_1280_140": {
+                    "name": "1280 + 140 Crystals",
+                    "price": 234441
+                },
+                "crystal_1980_260": {
+                    "name": "1980 + 260 Crystals",
+                    "price": 381017
+                },
+                "crystal_3280_600": {
+                    "name": "3280 + 600 Crystals",
+                    "price": 587234
+                },
+                "crystal_4260_710": {
+                    "name": "4260 + 710 Crystals",
+                    "price": 772423
+                },
+                "crystal_6480_1600": {
+                    "name": "6480 + 1600 Crystals",
+                    "price": 1174771
+                }
+            }
+        }
+    }
+}
