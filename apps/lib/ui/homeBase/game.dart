@@ -11,60 +11,64 @@ class HomeGame extends ConsumerWidget {
   static const routeName = homeMenu.routeName + "/homeGame";
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final List<String> games = ["HoK", "Genshin_Impact"];
+    final gamesAsync = ref.watch(gamesProvider);
 
     return Scaffold(
       appBar: AppBar(title: Text("Game List")),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: GridView.builder(
-          padding: EdgeInsets.all(8),
-          shrinkWrap: true, // Menghindari overflow
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 0.8, // Menyesuaikan tinggi kartu
-            crossAxisSpacing: 8, // Menambahkan jarak antar kartu
-            mainAxisSpacing: 8, // Menambahkan jarak antar kartu
+        child: gamesAsync.when(
+          data: (games) => GridView.builder(
+            padding: EdgeInsets.all(8),
+            shrinkWrap: true,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 0.8,
+              crossAxisSpacing: 8,
+              mainAxisSpacing: 8,
+            ),
+            itemCount: games.length,
+            itemBuilder: (context, index) {
+              final game = games[index];
+
+              return GestureDetector(
+                onTap: () {
+                  ref.read(selectedGameProvider.notifier).state = game.name;
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => GameDetailPage(gameName: game.name),
+                    ),
+                  );
+                },
+                child: GFCard(
+                  boxFit: BoxFit.cover,
+                  titlePosition: GFPosition.start,
+                  showOverlayImage: true,
+                  imageOverlay: game.imgUrl.startsWith('http') ||
+                          game.imgUrl.startsWith('https')
+                      ? NetworkImage(game.imgUrl) as ImageProvider
+                      : AssetImage("${game.imgUrl}"),
+                  title: GFListTile(
+                    title: Text(
+                      game.name,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  content: Center(
+                    child: Text(
+                      game.name,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              );
+            },
           ),
-          itemCount: games.length,
-          itemBuilder: (context, index) {
-            return GestureDetector(
-              onTap: () {
-                ref.read(selectedGameProvider.notifier).state = games[index];
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        GameDetailPage(gameName: games[index]),
-                  ),
-                );
-              },
-              child: GFCard(
-                boxFit: BoxFit.cover,
-                titlePosition: GFPosition.start,
-                showOverlayImage: true,
-                imageOverlay: AssetImage('assets/images/game_placeholder.png'),
-                title: GFListTile(
-                  avatar: GFAvatar(
-                    backgroundColor: GFColors.PRIMARY,
-                    child: Icon(Icons.videogame_asset, color: Colors.white),
-                  ),
-                  title: Text(
-                    games[index],
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                    maxLines: 1, // Membatasi teks ke 1 baris
-                    overflow: TextOverflow.ellipsis, // Memotong teks panjang
-                  ),
-                ),
-                content: Center(
-                  child: Text(
-                    games[index],
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-            );
-          },
+          loading: () => Center(child: CircularProgressIndicator()),
+          error: (error, stackTrace) => Center(child: Text("Error: $error")),
         ),
       ),
     );

@@ -44,6 +44,7 @@
     },
     "Games": {
         "HoK": {
+            "img_url": "assets/images/Honor_of_Kings.png",
             "pass": {
                 "weekly_Card": {
                     "name": "Weekly Card",
@@ -120,6 +121,7 @@
             }
         },
         "Genshin_Impact": {
+            "img_url": "assets/images/genshin_impact.png",
             "blessing_Welkin_Moon": {
                 "pack_1": {
                     "name": "Blessing Welkin Moon",
@@ -182,6 +184,7 @@
             }
         },
         "Honkai_StarRail": {
+            "img_url": "assets/images/honkai_star_rail.png",
             "blessing_Welkin_Moon": {
                 "pack_1": {
                     "name": "Express Supply Pass",

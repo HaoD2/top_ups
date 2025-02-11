@@ -10,7 +10,6 @@ import 'package:firebase_database/firebase_database.dart';
 class FirebaseRepository {
   final DatabaseReference _db = FirebaseDatabase.instance.ref();
 
-  /// Mengambil data produk berdasarkan kategori dan gameType dari Firebase Realtime Database
   Future<List<BaseProduct>> fetchProducts(
       String category, String gameType) async {
     print("🔍 Fetching products for category: $category, gameType: $gameType");
@@ -25,12 +24,21 @@ class FirebaseRepository {
     print("📦 Raw Snapshot Data: ${snapshot.value}");
 
     try {
-      // Konversi data dari Firebase
       final rawData = snapshot.value as Map<dynamic, dynamic>;
-      final data = rawData.map((key, value) =>
-          MapEntry(key.toString(), value as Map<dynamic, dynamic>));
 
-      print("✅ Converted Data: $data");
+      // Debug untuk melihat tipe data setiap key
+      rawData.forEach((key, value) {
+        print("🔍 Key: $key | Type: ${value.runtimeType} | Value: $value");
+      });
+
+      // Filter hanya data bertipe Map
+      final data = Map.fromEntries(
+        rawData.entries.where((entry) => entry.value is Map).map((entry) =>
+            MapEntry(
+                entry.key.toString(), entry.value as Map<dynamic, dynamic>)),
+      );
+
+      print("✅ Filtered Data: $data");
 
       List<BaseProduct> products = [];
 
@@ -44,15 +52,13 @@ class FirebaseRepository {
             products.add(GamePassModel.fromJson(id, jsonData));
           } else {
             jsonData.forEach((subId, value) {
-              print(
-                  "🛠️ Parsing Sub-ID: $subId dengan Value: $value (${value.runtimeType})");
+              print("🛠️ Parsing Sub-ID: $subId dengan Value: $value");
 
               if (value == null) {
                 print("❌ SKIPPED: $subId karena value == null");
                 return;
               }
 
-              // Konversi jika tipe bukan Map<String, dynamic>
               if (value is String) {
                 try {
                   value = jsonDecode(value);
@@ -68,57 +74,62 @@ class FirebaseRepository {
                 print("🔄 Converted List to Map: $value");
               }
 
-              // Konversi Map<Object?, Object?> ke Map<String, dynamic>
-              if (value is Map<Object?, Object?>) {
-                value = Map<String, dynamic>.from(value);
-                print(
-                    "🔄 Converted _Map<Object?, Object?> to Map<String, dynamic>: $value");
+              if (value is Map) {
+                try {
+                  value = Map<String, dynamic>.from(
+                      value.map((k, v) => MapEntry(k.toString(), v)));
+                  print("🔄 Converted Value: ${jsonEncode(value)}");
+                } catch (e) {
+                  print("❌ Error converting value: $e");
+                  return;
+                }
               }
 
-              if (value is! Map<String, dynamic>) {
-                print(
-                    "❌ SKIPPED: $subId karena value masih bukan Map<String, dynamic> (Tipe: ${value.runtimeType})");
-                return;
-              }
-
-              if (value.isEmpty) {
-                print("❌ SKIPPED: $subId karena value kosong");
+              if (value is! Map<String, dynamic> || value.isEmpty) {
+                print("❌ SKIPPED: $subId karena value tidak valid");
                 return;
               }
 
               var product = GameCurrencyModel.fromJson(subId, value);
               products.add(product);
-              print(
-                  "✅ Added Product: ${product.id}, Price: ${product.price}, Amount: ${product.amount}, Bonus: ${product.bonus}");
+              print("✅ Added Product: ${product.toString()}");
             });
           }
         }
       });
 
       return products;
-    } catch (e, stack) {
+    } catch (e) {
+      print("❌ Error: $e");
       return [];
     }
   }
 
-  Future<List<String>> fetchGames() async {
-    print("🔍 Fetching game types from database");
+  Future<List<GameModel>> fetchGames() async {
+    print("🔍 Fetching games from database");
 
     final snapshot = await _db.child("Games").get();
 
     if (!snapshot.exists || snapshot.value == null) {
-      print("⚠️ No game types found in database");
+      print("⚠️ No games found in database");
       return [];
     }
 
     try {
-      final rawData = snapshot.value as Map<dynamic, dynamic>;
-      final gameList = rawData.keys.map((key) => key.toString()).toList();
+      final rawData = Map<String, dynamic>.from(
+          snapshot.value as Map); // Konversi ke Map<String, dynamic>
 
-      print("✅ Fetched game types: $gameList");
+      final gameList = rawData.entries.map((entry) {
+        final name = entry.key; // Nama game sebagai key
+        final data =
+            Map<String, dynamic>.from(entry.value as Map); // Konversi nilai map
+        return GameModel.fromJson(name, data);
+      }).toList();
+
+      print("✅ Fetched games: $gameList");
       return gameList;
     } catch (e) {
-      print("❌ Error fetching game types: $e");
+      print("❌ Error fetching games: $e");
       return [];
     }
   }

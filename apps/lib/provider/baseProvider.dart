@@ -37,7 +37,6 @@ final firebaseRepositoryProvider = Provider<FirebaseRepository>((ref) {
   return FirebaseRepository();
 });
 
-/// Provider untuk mendapatkan produk berdasarkan kategori dan game
 final productsProvider =
     FutureProvider.family<List<BaseProduct>, Map<String, String?>>(
         (ref, params) async {
@@ -53,6 +52,6 @@ final productsProvider =
   return products;
 });
 
-final gamesProvider = FutureProvider<List<String>>((ref) async {
+final gamesProvider = FutureProvider<List<GameModel>>((ref) async {
   return FirebaseRepository().fetchGames();
 });
