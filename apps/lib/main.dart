@@ -7,8 +7,8 @@ import 'package:top_ups/pages/login_page.dart';
 import 'package:top_ups/pages/state/loginstate.dart';
 import 'package:top_ups/provider/baseProvider.dart';
 import 'package:top_ups/repository/authRepo.dart';
-import 'package:top_ups/ui/homeBase/game.dart';
-import 'package:top_ups/ui/homeBase/gameDetail.dart';
+import 'package:top_ups/ui/homeBase/game/game.dart';
+import 'package:top_ups/ui/homeBase/game/gameDetail.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding

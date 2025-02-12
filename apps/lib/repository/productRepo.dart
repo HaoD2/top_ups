@@ -9,7 +9,7 @@ import 'package:firebase_database/firebase_database.dart';
 
 class FirebaseRepository {
   final DatabaseReference _db = FirebaseDatabase.instance.ref();
-
+  final Map<String, List<String>> _voucherCache = {};
   Future<List<BaseProduct>> fetchProducts(
       String category, String gameType) async {
     print("🔍 Fetching products for category: $category, gameType: $gameType");
@@ -130,6 +130,38 @@ class FirebaseRepository {
       return gameList;
     } catch (e) {
       print("❌ Error fetching games: $e");
+      return [];
+    }
+  }
+
+  Future<List<VoucherModel>> fetchVoucher() async {
+    print("🔍 Fetching vouchers from Non_Games/Voucher");
+
+    final snapshot = await _db.child("Non_Games/Voucher").get();
+
+    if (!snapshot.exists || snapshot.value == null) {
+      print("⚠️ No vouchers found in database");
+      return [];
+    }
+
+    try {
+      final rawData = Map<String, dynamic>.from(snapshot.value as Map);
+      print("🗂 Raw data: $rawData");
+
+      final voucherList = rawData.entries.map((entry) {
+        final vendorName = entry.key; // Ambil nama vendor seperti "Steam"
+        return VoucherModel(
+          id: vendorName,
+          name: vendorName, // Gunakan vendorName sebagai nama voucher
+          price: 0, // Kosongkan harga karena tidak perlu
+          vendor: vendorName,
+        );
+      }).toList();
+
+      print("✅ Fetched vouchers: $voucherList");
+      return voucherList;
+    } catch (e) {
+      print("❌ Error fetching vouchers: $e");
       return [];
     }
   }

@@ -55,3 +55,10 @@ final productsProvider =
 final gamesProvider = FutureProvider<List<GameModel>>((ref) async {
   return FirebaseRepository().fetchGames();
 });
+
+final voucherProvider = FutureProvider<List<VoucherModel>>((ref) async {
+  final repo = ref.read(firebaseRepositoryProvider);
+  final vouchers = await repo.fetchVoucher(); // Tanpa parameter
+  print("✅ Fetched vouchers: $vouchers");
+  return vouchers;
+});

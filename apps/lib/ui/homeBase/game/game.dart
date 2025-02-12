@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:top_ups/pages/home.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:top_ups/provider/baseProvider.dart';
-import 'package:top_ups/ui/homeBase/gameDetail.dart';
+import 'package:top_ups/ui/homeBase/game/gameDetail.dart';
 
 class HomeGame extends ConsumerWidget {
   static const routeName = homeMenu.routeName + "/homeGame";

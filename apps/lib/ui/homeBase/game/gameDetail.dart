@@ -6,7 +6,7 @@ import 'package:top_ups/model/gamePass.dart';
 import 'package:top_ups/model/VoucherModel.dart';
 import 'package:top_ups/provider/baseProvider.dart';
 import 'package:intl/intl.dart';
-import 'package:top_ups/ui/homeBase/game.dart';
+import 'package:top_ups/ui/homeBase/game/game.dart';
 import 'package:top_ups/provider/baseProvider.dart';
 
 class GameDetailPage extends ConsumerStatefulWidget {
