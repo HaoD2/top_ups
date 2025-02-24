@@ -7,35 +7,35 @@
     "Non_Games": {
         "Voucher": {
             "Steam": {
-                "IDR_12000": {
+                "IDR 12000": {
                     "name": "IDR 12.000 STEAM",
                     "price": 11882
                 },
-                "IDR_45000": {
+                "IDR 45000": {
                     "name": "IDR 45.000 STEAM",
                     "price": 44180
                 },
-                "IDR_60000": {
+                "IDR 60000": {
                     "name": "IDR 60.000 STEAM",
                     "price": 59793
                 },
-                "IDR_90000": {
+                "IDR 90000": {
                     "name": "IDR 90.000 STEAM",
                     "price": 89606
                 },
-                "IDR_120000": {
+                "IDR 120000": {
                     "name": "IDR 120.000 STEAM",
                     "price": 117981
                 },
-                "IDR_250000": {
+                "IDR 250000": {
                     "name": "IDR 250.000 STEAM",
                     "price": 245185
                 },
-                "IDR_400000": {
+                "IDR 400000": {
                     "name": "IDR 400.000 STEAM",
                     "price": 398059
                 },
-                "IDR_600000": {
+                "IDR 600000": {
                     "name": "IDR 600.000 STEAM",
                     "price": 589907
                 }
@@ -46,74 +46,74 @@
         "HoK": {
             "img_url": "assets/images/Honor_of_Kings.png",
             "pass": {
-                "weekly_Card": {
+                "Weekly Card": {
                     "name": "Weekly Card",
                     "price": 11432,
                     "description": "Mendapatkan bonus harian selama 7 hari."
                 },
-                "weekly_Card_Plus": {
+                "Weekly Card Plus": {
                     "name": "Weekly Card Plus",
                     "price": 37153,
                     "description": "Mendapatkan lebih banyak bonus harian selama 7 hari."
                 }
             },
             "tokens": {
-                "token_8": {
+                "8 Token": {
                     "amount": 8,
                     "bonus": 0,
                     "price": 1225
                 },
-                "token_16_1": {
+                "16 + 1 Token": {
                     "amount": 16,
                     "bonus": 1,
                     "price": 2177
                 },
-                "token_23_2": {
+                "23 + 2 Token": {
                     "amount": 23,
                     "bonus": 2,
                     "price": 3538
                 },
-                "token_80_8": {
+                "80 + 8 Token": {
                     "amount": 80,
                     "bonus": 8,
                     "price": 11840
                 },
-                "token_240_17": {
+                "240 + 17 Token": {
                     "amount": 240,
                     "bonus": 17,
                     "price": 37153
                 },
-                "token_400_32": {
+                "400 + 32 Token": {
                     "amount": 400,
                     "bonus": 32,
                     "price": 62466
                 },
-                "token_560_45": {
+                "560 + 45 Token": {
                     "amount": 560,
                     "bonus": 45,
                     "price": 85739
                 },
-                "token_800_65": {
+                "800 + 65 Token": {
                     "amount": 800,
                     "bonus": 65,
                     "price": 117040
                 },
-                "token_1200_108": {
+                "1200 + 108 Token": {
                     "amount": 1200,
                     "bonus": 108,
                     "price": 183454
                 },
-                "token_2400_216": {
+                "2400 + 216 Token": {
                     "amount": 2400,
                     "bonus": 216,
                     "price": 364866
                 },
-                "token_4000_400": {
+                "4000 + 400 Token": {
                     "amount": 4000,
                     "bonus": 400,
                     "price": 597450
                 },
-                "token_8000_800": {
+                "8000 + 800 Token": {
                     "amount": 8000,
                     "bonus": 800,
                     "price": 1170675
@@ -123,61 +123,61 @@
         "Genshin_Impact": {
             "img_url": "assets/images/genshin_impact.png",
             "blessing_Welkin_Moon": {
-                "pack_1": {
+                "Blessing Welkin Moon x 1": {
                     "name": "Blessing Welkin Moon",
                     "price": 58478
                 },
-                "pack_2": {
+                "Blessing Welkin Moon x 2": {
                     "name": "Blessing Welkin Moon x 2",
                     "price": 116957
                 },
-                "pack_3": {
+                "Blessing Welkin Moon x 3": {
                     "name": "Blessing Welkin Moon x 3",
                     "price": 175435
                 },
-                "pack_4": {
+                "Blessing Welkin Moon x 4": {
                     "name": "Blessing Welkin Moon x 4",
                     "price": 233913
                 },
-                "pack_5": {
+                "Blessing Welkin Moon x 5": {
                     "name": "Blessing Welkin Moon x 5",
                     "price": 292391
                 }
             },
             "genesis_Crystals": {
-                "all_Pack": {
+                "All Pack": {
                     "name": "All Pack Genesis Crystals",
                     "price": 2389518
                 },
-                "crystal_60": {
+                "60 Crystals": {
                     "name": "60 Crystals",
                     "price": 11455
                 },
-                "crystal_300_30": {
+                "300 + 30 Crystals": {
                     "name": "300 + 30 Crystals",
                     "price": 58478
                 },
-                "crystal_980_110": {
+                "980 + 110 Crystals": {
                     "name": "980 + 110 Crystals",
                     "price": 175963
                 },
-                "crystal_1280_140": {
+                "1280 + 140 Crystals": {
                     "name": "1280 + 140 Crystals",
                     "price": 234441
                 },
-                "crystal_1980_260": {
+                "1980 + 260 Crystals": {
                     "name": "1980 + 260 Crystals",
                     "price": 381017
                 },
-                "crystal_3280_600": {
+                "3280 + 600 Crystals": {
                     "name": "3280 + 600 Crystals",
                     "price": 587234
                 },
-                "crystal_4260_710": {
+                "4260 + 710 Crystals": {
                     "name": "4260 + 710 Crystals",
                     "price": 772423
                 },
-                "crystal_6480_1600": {
+                "6480 + 1600 Crystals": {
                     "name": "6480 + 1600 Crystals",
                     "price": 1174771
                 }
@@ -185,62 +185,62 @@
         },
         "Honkai_StarRail": {
             "img_url": "assets/images/honkai_star_rail.png",
-            "blessing_Welkin_Moon": {
-                "pack_1": {
+            "express_supply_pass": {
+                "Express Supply Pass x 1": {
                     "name": "Express Supply Pass",
                     "price": 58478
                 },
-                "pack_2": {
+                "Express Supply Pass x 2": {
                     "name": "Express Supply Pass x 2",
                     "price": 116957
                 },
-                "pack_3": {
+                "Express Supply Pass x 3": {
                     "name": "Express Supply Pass x 3",
                     "price": 175435
                 },
-                "pack_4": {
+                "Express Supply Pass x 4": {
                     "name": "Express Supply Pass x 4",
                     "price": 233913
                 },
-                "pack_5": {
+                "Express Supply Pass x 5": {
                     "name": "Express Supply Pass x 5",
                     "price": 292391
                 }
             },
             "jade": {
-                "all_Pack": {
+                "All Pack": {
                     "name": "All Pack Jade",
                     "price": 2389518
                 },
-                "jade_60": {
+                "60 Jade": {
                     "name": "60 Jade",
                     "price": 11455
                 },
-                "jade_300_30": {
+                "300 + 30 Jade": {
                     "name": "300 + 30 Jade",
                     "price": 58478
                 },
-                "jade_980_110": {
+                "980 + 110 Jade": {
                     "name": "980 + 110 Jade",
                     "price": 175963
                 },
-                "jade_1280_140": {
+                "1280 + 140 Jade": {
                     "name": "1280 + 140 Jade",
                     "price": 234441
                 },
-                "jade_1980_260": {
+                "1980 + 260 Jade": {
                     "name": "1980 + 260 Jade",
                     "price": 381017
                 },
-                "jade_3280_600": {
+                "3280 + 600 Jade": {
                     "name": "3280 + 600 Jade",
                     "price": 587234
                 },
-                "jade_4260_710": {
+                "4260 + 710 Jade": {
                     "name": "4260 + 710 Jade",
                     "price": 772423
                 },
-                "jade_6480_1600": {
+                "6480 + 1600 Jade": {
                     "name": "6480 + 1600 Jade",
                     "price": 1174771
                 }

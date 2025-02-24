@@ -21,80 +21,119 @@ class GameDetailPage extends ConsumerStatefulWidget {
 }
 
 class _GameDetailPageState extends ConsumerState<GameDetailPage> {
-  static const routeName = HomeGame.routeName + '/game';
-  late final Map<String, String> params;
   late final Future<List<BaseProduct>> futureProducts;
-  @override
-  void dispose() {
-    // Reset pilihan game saat keluar dari halaman ini
-    super.dispose();
-  }
+  BaseProduct? selectedProduct;
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    params = {'category': 'Games', 'gameType': widget.gameName};
+    final params = {'category': 'Games', 'gameType': widget.gameName};
     futureProducts = ref.read(productsProvider(params).future);
-    futureProducts.then((products) {
-      print("Products fetched successfully: ${products.length}");
-      for (var product in products) {
-        print("Product: ${product.toString()}");
-      }
-    }).catchError((error, stackTrace) {
-      print("Error fetching products: $error");
-    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Top-Up ${widget.gameName}")),
-      body: FutureBuilder<List<BaseProduct>>(
-        future: futureProducts,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            print("❌ UI Error: ${snapshot.error}");
-            return Center(child: Text("Error: ${snapshot.error}"));
-          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            print("⚠️ No Data Available");
-            return Center(child: Text("Tidak ada data tersedia"));
-          }
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            FutureBuilder<List<BaseProduct>>(
+              future: futureProducts,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError ||
+                    !snapshot.hasData ||
+                    snapshot.data!.isEmpty) {
+                  return Center(child: Text("Tidak ada data tersedia"));
+                }
 
-          print("📌 UI is displaying ${snapshot.data!.length} items");
-
-          return ListView.builder(
-            itemCount: snapshot.data!.length,
-            itemBuilder: (context, index) {
-              final item = snapshot.data![index];
-              print("🛒 UI Displaying: ${item.toString()}");
-
-              return ListTile(
-                title: Text(item.name),
-                subtitle: Text("Rp ${item.price}"),
-                trailing: _buildTrailingWidget(item),
-              );
-            },
-          );
-        },
+                return SingleChildScrollView(
+                  child: PopupMenuButton<BaseProduct>(
+                    onSelected: (BaseProduct value) {
+                      setState(() {
+                        selectedProduct = value;
+                      });
+                    },
+                    itemBuilder: (context) {
+                      return snapshot.data!.map((product) {
+                        int totalPrice =
+                            (product.price * 1.1).round(); // Pajak 10%
+                        return PopupMenuItem<BaseProduct>(
+                          value: product,
+                          child: Text(
+                            "${product.name} - ${formatCurrency(totalPrice)} (Termasuk Pajak)",
+                          ),
+                        );
+                      }).toList();
+                    },
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(selectedProduct != null
+                              ? "${selectedProduct!.name} - ${formatCurrency((selectedProduct!.price * 1.1).round())}"
+                              : "Pilih nominal top-up"),
+                          Icon(Icons.arrow_drop_down),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+            SizedBox(height: 16),
+            TextField(
+              controller: emailController,
+              decoration: InputDecoration(labelText: "Email"),
+            ),
+            TextField(
+              controller: phoneController,
+              decoration: InputDecoration(labelText: "Nomor Telepon"),
+              keyboardType: TextInputType.phone,
+            ),
+            SizedBox(height: 24),
+            Text("Pilih Metode Pembayaran",
+                style: TextStyle(fontWeight: FontWeight.bold)),
+            SizedBox(height: 8),
+            _buildPaymentMethods(),
+          ],
+        ),
       ),
     );
   }
 
-  /// Menampilkan informasi tambahan berdasarkan tipe produk
-  Widget _buildTrailingWidget(BaseProduct item) {
-    if (item is GameCurrencyModel) {
-      return Text("${item.amount} + ${item.bonus} Bonus");
-    } else if (item is GamePassModel) {
-      return Text(item.description);
-    } else if (item is VoucherModel) {
-      return Text("Voucher ${item.vendor}");
-    }
-    return SizedBox.shrink();
+  Widget _buildPaymentMethods() {
+    return Column(
+      children: [
+        Card(
+            child: ListTile(leading: Icon(Icons.qr_code), title: Text("QRIS"))),
+        Card(
+            child: ListTile(
+                leading: Icon(Icons.account_balance_wallet),
+                title: Text("E-Wallet"))),
+        Card(
+            child: ListTile(
+                leading: Icon(Icons.account_balance),
+                title: Text("Virtual Account"))),
+        Card(
+            child: ListTile(
+                leading: Icon(Icons.store), title: Text("Convenience Store"))),
+      ],
+    );
   }
 
-  /// Format harga ke mata uang Indonesia
   String formatCurrency(int price) {
     final formatter = NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ');
     return formatter.format(price);
