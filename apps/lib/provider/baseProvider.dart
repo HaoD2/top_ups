@@ -62,3 +62,6 @@ final voucherProvider = FutureProvider<List<VoucherModel>>((ref) async {
   print("✅ Fetched vouchers: $vouchers");
   return vouchers;
 });
+
+//selectedPayment
+final selectedPaymentProvider = StateProvider<String?>((ref) => null);

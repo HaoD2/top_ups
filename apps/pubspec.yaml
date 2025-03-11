@@ -48,6 +48,7 @@ dependencies:
   firebase_database: ^11.1.1
   intl: ^0.20.2
   getwidget: ^4.0.0
+  midtrans_sdk: ^0.4.0
 
 
 dev_dependencies:

@@ -1,1 +1,3 @@
 backend_tu/node_modules/
+backend_tu/.env
+backend_tu/serviceAccountKey.json
